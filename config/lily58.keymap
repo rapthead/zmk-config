@@ -23,7 +23,7 @@
  * |   `  |   Q  |   W  |   E  |   R  |   T  |                    |   Y  |   U  |   I  |   O  |   P  |  [   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |  Tab |   A  |   S  |   D  |   F  |   G  |-------.    ,-------|   H  |   J  |   K  |   L  |   ;  |  '   |
- * |------+------+------+------+------+------|   -   |    |    +  |------+------+------+------+------+------|
+ * |------+------+------+------+------+------|  - _  |    |  = +  |------+------+------+------+------+------|
  * |LCTRL |   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |  \   |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   | LAlt | LGUI | L1   | /Space  /       \Enter \  | L2    |BackSP| RGUI |
@@ -43,12 +43,6 @@
         };
 
         sym_layer {
-// ------------------------------------------------------------------------------------------------------------
-// | BTCLR | BT1 | BT2 |  BT3 |  BT4 |  BT5 |                   |      |       |       |      |       |       |
-// |  F1   |  F2 |  F3 |  F4  |  F5  |  F6  |                   |  F7  |  F8   |  F9   |  F10 |  F11  |  F12  |
-// |   `   |  !  |  @  |  #   |  $   |  %   |                   |  ^   |  &    |  *    |  (   |   )   |   ~   |
-// |       |     |     |      |      |      |        |  |       |      |  _    |  +    |  {   |   }   |  "|"  |
-//                     |      |      |      |        |  |       |      |       |       |
 /* SYM
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |      |  F1  |  F2  |  F3  |  F4  |  F5  |                    |  F6  |  F7  |  F8  |  F9  | F10  | F11  |
@@ -59,34 +53,42 @@
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
  * |      |   ^  |   \  |   *  |   /  |   #  |-------|    |-------|   ~  |   $  |   {  |   }  |   @  |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *                   | LAlt | LGUI | SYM  | /Space  /       \Enter \  | NAV  | DEL  | RGUI |
+ *                   |      |      |      | /       /       \      \  |      |      |      |
  *                   |      |      |      |/       /         \      \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
             bindings = <
-&trans &kp F1    &kp F2        &kp F3           &kp F4            &kp F5         /**/ &kp F6        &kp F7      &kp F8               &kp F9                &kp F10      &kp F11
-&trans &kp SQT   &kp LESS_THAN &kp GREATER_THAN &kp DOUBLE_QUOTES &kp PERIOD     /**/ &kp AMPERSAND &kp PERCENT &kp LEFT_BRACKET     &kp RIGHT_BRACKET     &kp GRAVE    &kp F12
-&trans &kp EXCL  &kp MINUS     &kp PLUS         &kp EQUAL         &kp UNDERSCORE /**/ &kp PIPE      &kp COLON   &kp LEFT_PARENTHESIS &kp RIGHT_PARENTHESIS &kp QUESTION &trans
-&trans &kp CARET &kp BACKSLASH &kp ASTERISK     &kp SLASH         &kp HASH       /**/ &kp TILDE     &kp DOLLAR  &kp LEFT_BRACE       &kp RIGHT_BRACE       &kp AT_SIGN  &trans
-                 &trans        &trans           &trans            &trans         /**/ &trans        &trans      &trans               &trans
+&trans &kp F1    &kp F2        &kp F3           &kp F4            &kp F5                /**/                      &kp F6        &kp F7         &kp F8               &kp F9                &kp F10      &kp F11
+&trans &kp SQT   &kp LESS_THAN &kp GREATER_THAN &kp DOUBLE_QUOTES &kp PERIOD            /**/                      &kp AMPERSAND &kp PERCENT    &kp LEFT_BRACKET     &kp RIGHT_BRACKET     &kp GRAVE    &kp F12
+&trans &kp EXCL  &kp MINUS     &kp PLUS         &kp EQUAL         &kp UNDERSCORE        /**/                      &kp PIPE      &kp COLON      &kp LEFT_PARENTHESIS &kp RIGHT_PARENTHESIS &kp QUESTION &trans
+&trans &kp CARET &kp BACKSLASH &kp ASTERISK     &kp SLASH         &kp HASH       &trans /**/ &trans &kp TILDE     &kp DOLLAR    &kp LEFT_BRACE &kp RIGHT_BRACE      &kp AT_SIGN           &trans
+                               &trans           &trans            &trans         &trans /**/ &trans &trans        &trans        &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
-        raise_layer {
-// ------------------------------------------------------------------------------------------------------------
-// | BTCLR | BT1 | BT2 |  BT3 |  BT4 |  BT5 |                   |      |       |       |      |       |       |
-// |   `   |  1  |  2  |  3   |  4   |  5   |                   |  6   |   7   |   8   |  9   |   0   |       |
-// |   F1  |  F2 |  F3 |  F4  |  F5  |  F6  |                   |      |   <-  |   v   |  ^   |  ->   |       |
-// |   F7  |  F8 |  F9 |  F10 |  F11 |  F12 |        |  |       |  +   |   -   |   =   |  [   |   ]   |   \   |
-//                     |      |      |      |        |  |       |      |       |       |
+        nav_layer {
+/* NAV
+ * ,-----------------------------------------.                    ,-----------------------------------------.
+ * | BTCLR| BT0  | BT1  | BT2  | BT3  | BT4  |                    |      |      |      |      |      |      |
+ * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+ * | OUTBT|OUTUSB|OUTTOG|      |      |      |                    |      |      |      |      |      |      |
+ * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+ * |      |      | HOME | PGUP | PGDN | END  |-------.    ,-------| Left | Down |  Up  |Right |      |      |
+ * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
+ * |      |      |      |      |      |      |-------|    |-------|      |      |      |      |      |      |
+ * `-----------------------------------------/       /     \      \-----------------------------------------'
+ *                   |      |      |      | /       /       \      \  |      |      |      |
+ *                   |      |      |      |/       /         \      \ |      |      |      |
+ *                   `----------------------------'           '------''--------------------'
+ */
             bindings = <
-&bt BT_CLR &bt BT_SEL 0     &bt BT_SEL 1      &bt BT_SEL 2      &bt BT_SEL 3 &bt BT_SEL 4                 &trans    &trans    &trans    &trans    &trans    &trans
-&out OUT_USB &out OUT_BLE    &out OUT_TOG       &kp F4            &kp F5       &kp F6                       &kp F7    &kp F8    &kp F9    &kp F10   &kp F11   &kp F12
-&kp F1    &kp F2 &kp F3 &kp F4  &kp F5  &kp F6                       &trans      &kp LEFT  &kp DOWN  &kp UP   &kp RIGHT &trans
-&kp F7    &kp F8 &kp F9 &kp F10 &kp F11 &kp F12   &trans   &trans    &kp KP_PLUS &kp MINUS &kp EQUAL &kp LBKT &kp RBKT  &kp BSLH
-                        &trans  &trans  &trans    &trans   &trans    &trans      &trans    &trans
+&bt BT_CLR   &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3  &bt BT_SEL 4          /**/          &trans   &trans    &trans   &trans    &trans  &trans
+&out OUT_USB &out OUT_BLE &out OUT_TOG &trans       &trans        &trans                /**/          &trans   &trans    &trans   &trans    &trans  &trans
+&trans       &trans       &kp HOME     &kp PAGE_UP  &kp PAGE_DOWN &kp END               /**/          &kp LEFT &kp DOWN  &kp UP   &kp RIGHT &trans  &trans
+&trans       &trans       &trans       &trans       &trans        &trans       &trans   /**/ &trans   &trans   &trans    &trans   &trans    &trans  &trans
+                                       &trans       &trans        &trans       &trans   /**/ &trans   &trans    &trans   &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
